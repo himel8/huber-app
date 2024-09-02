@@ -52,6 +52,15 @@ declare interface Ride {
     car_seats: number;
   };
 }
+declare interface RiderCardProps {
+  id: string;
+  first_name: string;
+  last_name: string;
+  profile_image_url: string;
+  car_image_url: string;
+  car_seats: number;
+  rating: string;
+}
 
 declare interface ButtonProps extends TouchableOpacityProps {
   title: string;

@@ -5,6 +5,7 @@ import { icons, images } from "@/constants";
 import { useLocationStore } from "@/store";
 import { useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -130,9 +131,17 @@ const Home = () => {
   const [hasPermission, setHasPermission] = useState(false);
 
   const handleSignOut = () => {};
-  const handleDestinationPress = () => {};
+  const handleDestinationPress = (location: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  }) => {
+    setDestinationLocation(location);
+    console.log("press input");
+    router.push("/(root)/find-ride");
+  };
 
-  useEffect(async () => {
+  useEffect(() => {
     const requestLocation = async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -201,7 +210,8 @@ const Home = () => {
 
             <GoogleTextInput
               icon={icons.search}
-              containerStyle="bg-white shadow-md shadow-neutral-300"
+              // containerStyle="bg-white shadow-md shadow-neutral-300"
+              containerStyle=""
               handlePress={handleDestinationPress}
             />
             <>
